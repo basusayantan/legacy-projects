@@ -1,0 +1,14 @@
+PERSONAL USE ONLY LICENSE
+
+Copyright (c) 2025 Sayantan Basu
+
+This software and all related materials (the "Software") are provided solely for personal, non-commercial use. 
+You may use and modify the Software for your own educational purposes, but you may not distribute, share, or otherwise disclose it to others without prior written permission from the repository owner.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. 
+THE REPOSITORY OWNER DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+In no event shall the repository owner be liable for any damages arising from the use or inability to use the Software.
+
+For inquiries, contact: connect2sayantanbasu@gmail.com
