@@ -8,7 +8,7 @@ Separation of locally set configs and externally sourced ones.
 
 ### Prerequisites
 
-Java 8+
+Java 8+<br>
 Apache Ant 1.10.14
 
 ### Build Instructions
@@ -19,10 +19,11 @@ ant clean
 ant package
 ```
 
-The packaged jar file will be placed in `bin` folder.
+The packaged jar file will be placed in the `bin` folder.
 
 ### Usage
 
 Add the jar to use classpath, and use:
 ```java
-Config config = Configfactory.create()```
+Config config = Configfactory.create();
+```
