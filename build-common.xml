@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="common">
+	
+	<target name="show-properties">
+        <echoproperties/>
+    </target>
+
+	<target name="clean">
+        <delete dir="${dist.dir}" verbose="true"/>
+    </target>
+	
+	<target name="increment-release-version">
+		<property name="build" value="default"/>
+		<ant antfile="../build-version-file.xml" inheritall="false">
+			<property name="build" value="${build}"/>
+			<property name="basedir" value="${basedir}"/>
+		</ant>
+		<property file=".version"/>
+        <property name="version" value="${version.major}.${version.minor}.${version.patch}"/>
+        <property name="jar.name" value="${ant.project.name}-${version}-${build.number}"/>
+	</target>
+
+	<target name="package" depends="compile, increment-release-version">
+        <echo>Building version: ${version}</echo>
+        <jar destfile="${dist.dir}/${jar.name}.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Implementation-Title" value="${ant.project.name}"/>
+                <attribute name="Implementation-Version" value="${release.version}"/>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Build-Jdk" value="${java.version} ${java.vendor}"/>
+            </manifest>
+        </jar>
+    </target>
+	
+</project>

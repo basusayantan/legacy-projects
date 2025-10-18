@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="version-filegen" default="main">
+
+    <property name="header" value="Generated file. Do not edit!"/>
+
+    <tstamp>
+        <format property="build.number.new" pattern="yyMM.ddHHmmss"/>
+    </tstamp>
+    
+    <condition property="build-is-set" value="true">
+		<not>
+			<equals arg1="${build}" arg2="default"/>
+		</not>
+    </condition>
+
+    <condition property="build-major" value="true">
+        <equals arg1="${build}" arg2="major"/>
+    </condition>
+
+    <condition property="build-minor" value="true">
+        <equals arg1="${build}" arg2="minor"/>
+    </condition>
+
+    <condition property="build-patch" value="true">
+        <equals arg1="${build}" arg2="patch"/>
+    </condition>
+	
+	<target name="load-properties">
+		<property file=".version"/>
+	</target>
+
+    <target name="warn-if-build-not-set" unless="build-is-set">
+        <echo>The 'build' property is not set. Please specify -Dbuild=major/minor/patch on the command line.</echo>
+    </target>
+
+    <target name="main" depends="load-properties, warn-if-build-not-set, major, minor, patch, default"/>
+
+    <target name="major" if="build-major">
+        <propertyfile file=".version" comment="${header}">
+            <entry key="version.major" type="int"  operation="+" value="1" default="0"/>
+            <entry key="version.minor" type="int"  value="0" default="0"/>
+            <entry key="version.patch" type="int"  value="0" default="0"/>
+            <entry key="build.number" type="string" value="${build.number.new}" default="${build.number.new}"/>
+        </propertyfile>
+    </target>
+
+    <target name="minor" if="build-minor">
+        <propertyfile file=".version" comment="${header}">
+            <entry key="version.major" type="int"  value="${version.major}" default="1"/>
+            <entry key="version.minor" type="int"  operation="+" value= "1" default="0"/>
+            <entry key="version.patch" type="int"  value="0" default="0"/>
+            <entry key="build.number" type="string" value="${build.number.new}" default="${build.number.new}"/>
+        </propertyfile>
+    </target>
+
+    <target name="patch" if="build-patch">
+        <propertyfile file=".version" comment="${header}">
+            <entry key="version.major" type="int"  value="${version.major}" default="1"/>
+            <entry key="version.minor" type="int"  value="${version.minor}" default="0"/>
+            <entry key="version.patch" type="int"  operation="+" value="1" default="0"/>
+            <entry key="build.number" type="string" value="${build.number.new}" default="${build.number.new}"/>
+        </propertyfile>
+    </target>
+
+    <target name="default" unless="build-is-set">
+        <propertyfile file=".version" comment="${header}">
+            <entry key="version.major" type="int"  value="${version.major}" default="1"/>
+            <entry key="version.minor" type="int"  value="${version.minor}" default="0"/>
+            <entry key="version.patch" type="int"  value="${version.patch}" default="0"/>
+            <entry key="build.number" type="string" value="${build.number.new}" default="${build.number.new}"/>
+        </propertyfile>
+    </target>
+
+</project>

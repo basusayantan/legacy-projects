@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="config-util" default="package" basedir=".">
+
+    <import file="../build-common.xml"/>
+
+    <property file="build.properties"/>
+	
+	<path id="compile.classpath">
+		<fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${shared-lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+	
+	<target name="compile" depends="clean">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="compile.classpath" includeantruntime="false"/>
+    </target>
+
+</project>
